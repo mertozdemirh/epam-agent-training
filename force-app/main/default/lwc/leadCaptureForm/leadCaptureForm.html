@@ -1,0 +1,103 @@
+<template>
+    <lightning-card title="Lead Capture Form" icon-name="standard:lead">
+        <div class="slds-p-around_medium">
+            <lightning-layout multiple-rows>
+
+                <!-- First Name -->
+                <lightning-layout-item size="12" medium-device-size="6" padding="around-small">
+                    <lightning-input
+                        label="First Name"
+                        value={firstName}
+                        onchange={handleFieldChange}
+                        data-field="firstName"
+                    ></lightning-input>
+                </lightning-layout-item>
+
+                <!-- Last Name -->
+                <lightning-layout-item size="12" medium-device-size="6" padding="around-small">
+                    <lightning-input
+                        label="Last Name"
+                        value={lastName}
+                        onchange={handleFieldChange}
+                        data-field="lastName"
+                        required
+                    ></lightning-input>
+                </lightning-layout-item>
+
+                <!-- Email -->
+                <lightning-layout-item size="12" medium-device-size="6" padding="around-small">
+                    <lightning-input
+                        type="email"
+                        label="Email"
+                        value={email}
+                        onchange={handleFieldChange}
+                        data-field="email"
+                        required
+                    ></lightning-input>
+                </lightning-layout-item>
+
+                <!-- Phone -->
+                <lightning-layout-item size="12" medium-device-size="6" padding="around-small">
+                    <lightning-input
+                        type="tel"
+                        label="Phone"
+                        value={phone}
+                        onchange={handleFieldChange}
+                        data-field="phone"
+                    ></lightning-input>
+                </lightning-layout-item>
+
+                <!-- Company (auto-populated) -->
+                <lightning-layout-item size="12" medium-device-size="6" padding="around-small">
+                    <lightning-input
+                        label="Company"
+                        value={company}
+                        onchange={handleFieldChange}
+                        data-field="company"
+                        required
+                    ></lightning-input>
+                </lightning-layout-item>
+
+                <!-- Lead Source -->
+                <lightning-layout-item size="12" medium-device-size="6" padding="around-small">
+                    <lightning-combobox
+                        label="Lead Source"
+                        value={leadSource}
+                        options={leadSourceOptions}
+                        onchange={handleFieldChange}
+                        data-field="leadSource"
+                        required
+                    ></lightning-combobox>
+                </lightning-layout-item>
+
+                <!-- Notes -->
+                <lightning-layout-item size="12" padding="around-small">
+                    <lightning-textarea
+                        label="Notes"
+                        value={notes}
+                        onchange={handleFieldChange}
+                        data-field="notes"
+                        max-length="500"
+                        placeholder="Optional notes (max 500 characters)"
+                    ></lightning-textarea>
+                </lightning-layout-item>
+
+            </lightning-layout>
+
+            <!-- Submit Button -->
+            <div class="slds-m-top_medium slds-text-align_right">
+                <lightning-button
+                    label="Submit"
+                    variant="brand"
+                    onclick={handleSubmit}
+                    disabled={isLoading}
+                ></lightning-button>
+            </div>
+
+            <!-- Loading Spinner -->
+            <template if:true={isLoading}>
+                <lightning-spinner alternative-text="Creating lead..." size="small"></lightning-spinner>
+            </template>
+        </div>
+    </lightning-card>
+</template>
