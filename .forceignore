@@ -11,4 +11,7 @@ package.xml
 # LWC Jest
 **/__tests__/**
 
+# LWC UTAM
+**/__utam__/**
+
 node_modules/
